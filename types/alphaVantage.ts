@@ -31,12 +31,10 @@ export type AlphaVantageGlobalQuote = {
   '10. change percent': string
 }
 
-
 export type AlphaVantageGlobalQuoteResponse = {
   ['Global Quote']: AlphaVantageGlobalQuote
   ['Information']?: string
 }
-
 
 export type AlphaVantageIntradayTimeSerieEntry = {
   '1. open': string
@@ -60,5 +58,3 @@ export type AlphaVantageIntradayResponse = {
   ['Time Series (5min)']: TimeSeriesData
   ['Information']?: string
 }
-
-

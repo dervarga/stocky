@@ -1,5 +1,14 @@
-import { AlphaVantageGlobalQuote, AlphaVantageIntradayTimeSerieEntry, AlphaVantageStockMatch, AlphavantageStockResponse } from '@/types/alphaVantage'
-import { StockGlobalQuote, StockIntradayTimeSerieEntry, StockMatch } from '@/types/stocks'
+import {
+  AlphaVantageGlobalQuote,
+  AlphaVantageIntradayTimeSerieEntry,
+  AlphaVantageStockMatch,
+  AlphavantageStockResponse,
+} from '@/types/alphaVantage'
+import {
+  StockGlobalQuote,
+  StockIntradayTimeSerieEntry,
+  StockMatch,
+} from '@/types/stocks'
 
 export const transformStock = (stock: AlphaVantageStockMatch) => {
   return {
@@ -38,7 +47,9 @@ export const transformGlobalQuote = (
   }
 }
 
-export const transformTimeSerieEntry = (timeSerie: AlphaVantageIntradayTimeSerieEntry): StockIntradayTimeSerieEntry => {
+export const transformTimeSerieEntry = (
+  timeSerie: AlphaVantageIntradayTimeSerieEntry
+): StockIntradayTimeSerieEntry => {
   return {
     open: timeSerie['1. open'],
     high: timeSerie['2. high'],
@@ -48,12 +59,20 @@ export const transformTimeSerieEntry = (timeSerie: AlphaVantageIntradayTimeSerie
   }
 }
 
-export const transformTimeSeries = (timeSeries: Record<string, AlphaVantageIntradayTimeSerieEntry>): StockIntradayTimeSerieEntry[] => {
+export const transformTimeSeries = (
+  timeSeries: Record<string, AlphaVantageIntradayTimeSerieEntry>
+): StockIntradayTimeSerieEntry[] => {
   return Object.values(timeSeries).map(transformTimeSerieEntry)
 }
 
-export const filterMatchingStock = ({ stocks, symbol }: { stocks: StockMatch[], symbol: string }): StockMatch => {
-  const match = stocks.find(stock => stock.symbol === symbol)
+export const filterMatchingStock = ({
+  stocks,
+  symbol,
+}: {
+  stocks: StockMatch[]
+  symbol: string
+}): StockMatch => {
+  const match = stocks.find((stock) => stock.symbol === symbol)
 
   if (!match) {
     throw new Error(`Stock with symbol ${symbol} not found`)
@@ -64,4 +83,3 @@ export const filterMatchingStock = ({ stocks, symbol }: { stocks: StockMatch[], 
 export const parseBigNumber = (value: string) => {
   return parseFloat(value).toLocaleString()
 }
-

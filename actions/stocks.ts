@@ -1,9 +1,22 @@
 'use server'
 
 import { transformGlobalQuote, transformStockMatches } from '@/lib/parsers'
-import { mockedGlobalQoute, mockedSymbols, mockedTimeSeriesResponse } from '@/testData'
-import { AlphaVantageGlobalQuoteResponse, AlphaVantageIntradayResponse, AlphavantageStockResponse, TimeSeriesData } from '@/types/alphaVantage'
-import { StockGlobalQuote, StockIntradayTimeSerieEntry, StockMatch } from '@/types/stocks'
+import {
+  mockedGlobalQoute,
+  mockedSymbols,
+  mockedTimeSeriesResponse,
+} from '@/testData'
+import {
+  AlphaVantageGlobalQuoteResponse,
+  AlphaVantageIntradayResponse,
+  AlphavantageStockResponse,
+  TimeSeriesData,
+} from '@/types/alphaVantage'
+import {
+  StockGlobalQuote,
+  StockIntradayTimeSerieEntry,
+  StockMatch,
+} from '@/types/stocks'
 
 export const getSymbolsByKeyword = async (
   keyword: string
@@ -26,7 +39,9 @@ export const getSymbolsByKeyword = async (
   }
 }
 
-export const geStockWithGlobalQuote = async (symbol: string): Promise<{ stock: StockMatch, globalQuote: StockGlobalQuote }> => {
+export const geStockWithGlobalQuote = async (
+  symbol: string
+): Promise<{ stock: StockMatch; globalQuote: StockGlobalQuote }> => {
   try {
     const [stockMatches, globalQuote] = await Promise.all([
       getSymbolsByKeyword(symbol),
@@ -49,9 +64,9 @@ export const getGlobalQuote = async (symbol: string) => {
       `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
 
-    const rawGlobalQuoteResponse = (await response.json()) as AlphaVantageGlobalQuoteResponse
+    const rawGlobalQuoteResponse =
+      (await response.json()) as AlphaVantageGlobalQuoteResponse
     let globalQuote = rawGlobalQuoteResponse['Global Quote']
-
 
     if (!globalQuote) {
       globalQuote = mockedGlobalQoute
@@ -70,25 +85,33 @@ export const getDailyTimeSeries = async (symbol: string) => {
       `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=TIME_SERIES_DAILY&interval=15min&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
 
-    const rawTimeSeriesResponse = (await response.json()) as AlphaVantageIntradayResponse
+    const rawTimeSeriesResponse =
+      (await response.json()) as AlphaVantageIntradayResponse
 
-    const timeSeriesKey = Object.keys(rawTimeSeriesResponse).find(key => key.startsWith("Time Series"))
+    const timeSeriesKey = Object.keys(rawTimeSeriesResponse).find((key) =>
+      key.startsWith('Time Series')
+    )
 
-    const rawTimeSeries = timeSeriesKey && timeSeriesKey.startsWith("Time Series")
-      ? ((rawTimeSeriesResponse as any)[timeSeriesKey] as Record<string, TimeSeriesData>)
-      : mockedTimeSeriesResponse
+    const rawTimeSeries =
+      timeSeriesKey && timeSeriesKey.startsWith('Time Series')
+        ? ((rawTimeSeriesResponse as any)[timeSeriesKey] as Record<
+            string,
+            TimeSeriesData
+          >)
+        : mockedTimeSeriesResponse
 
-    const parsedData: StockIntradayTimeSerieEntry[] = Object.entries(rawTimeSeries).map(([timestamp, entry]) => ({
+    const parsedData: StockIntradayTimeSerieEntry[] = Object.entries(
+      rawTimeSeries
+    ).map(([timestamp, entry]) => ({
       timestamp,
-      open: entry["1. open"],
-      high: entry["2. high"],
-      low: entry["3. low"],
-      close: entry["4. close"],
-      volume: entry["5. volume"],
+      open: entry['1. open'],
+      high: entry['2. high'],
+      low: entry['3. low'],
+      close: entry['4. close'],
+      volume: entry['5. volume'],
     }))
 
     return parsedData
-
   } catch (error) {
     console.error(error)
     throw new Error('Failed to fetch daily time series')

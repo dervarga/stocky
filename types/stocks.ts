@@ -30,5 +30,3 @@ export type StockIntradayTimeSerieEntry = {
   close: string
   volume: string
 }
-
-
