@@ -12,23 +12,25 @@ export const StockSearch = () => {
 
   const [field, setField] = useState('')
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
     const params = new URLSearchParams(searchParams)
     params.set('searchTerm', field)
     replace(`${pathname}?${params.toString()}`)
   }
 
   return (
-    <div className='mt-12 flex w-full max-w-xl space-x-2'>
+    <form
+      className='mt-12 flex w-full max-w-xl space-x-2'
+      onSubmit={handleSubmit}
+    >
       <Input
         type='text'
         placeholder='Search for stocks by name or symbol'
         value={field}
         onChange={(e) => setField(e.target.value)}
       />
-      <Button type='button' onClick={() => handleSubmit()}>
-        Search
-      </Button>
-    </div>
+      <Button type='submit'>Search</Button>
+    </form>
   )
 }

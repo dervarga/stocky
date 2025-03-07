@@ -1,3 +1,4 @@
+import { Providers } from '@/lib/providers'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
@@ -27,15 +28,17 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className='flex min-h-screen flex-col'>
-          <main className='flex flex-grow flex-col'>
-            <header className='bg-gray-800 p-4 text-white'>
-              <h1 className='text-2xl font-bold'>Stocky</h1>
-              <p className='text-sm'>{metadata.description}</p>
-            </header>
-            {children}
-          </main>
-        </div>
+        <Providers>
+          <div className='flex min-h-screen flex-col'>
+            <main className='flex flex-grow flex-col'>
+              <header className='bg-gray-800 p-4 text-white'>
+                <h1 className='text-2xl font-bold'>Stocky</h1>
+                <p className='text-sm'>{metadata.description}</p>
+              </header>
+              {children}
+            </main>
+          </div>
+        </Providers>
       </body>
     </html>
   )

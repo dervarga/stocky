@@ -1,6 +1,7 @@
 'use server'
 
 import { transformStockMatches } from '@/lib/parsers'
+import { mockedSymbols } from '@/testData'
 import { AlphavantageStockResponse } from '@/types/alphaVantage'
 import { StockMatch } from '@/types/stocks'
 
@@ -13,6 +14,10 @@ export const getSymbolsByKeyword = async (
     )
 
     const matches = (await response.json()) as AlphavantageStockResponse
+
+    if (!matches.bestMatches) {
+      matches.bestMatches = mockedSymbols
+    }
 
     return transformStockMatches(matches)
   } catch (error) {
