@@ -11,6 +11,7 @@ export const getSymbolsByKeyword = async (
     const response = await fetch(
       `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
+
     const matches = (await response.json()) as AlphavantageStockResponse
 
     return transformStockMatches(matches)
