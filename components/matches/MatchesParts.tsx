@@ -1,16 +1,24 @@
 import { StockMatch } from '@/types/stocks'
 import { LoaderCircle } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { Separator } from '../ui/separator'
 
-export const MatchRow = ({ match }: { match: StockMatch }) => (
-  <div className='my-1 cursor-pointer space-y-1 px-2 hover:bg-gray-100'>
-    <div className='text-md font-semibold'>{match.symbol}</div>
-    <div className='flex space-x-1 text-sm'>
-      <div className='after:content-[","]'>{match.name}</div>
-      <div className='after:content-[","]'>{match.region}</div>
-      <div>{match.type}</div>
+export const MatchRow = ({ match }: { match: StockMatch }) => {
+  const { replace } = useRouter()
+  const handleClick = () => {
+    replace(`/stock/${match.symbol}`)
+  }
+  return (
+    <div className='space-y-1 px-2 py-1' onClick={handleClick}>
+      <div className='text-md font-semibold'>{match.symbol}</div>
+      <div className='flex space-x-1 text-sm'>
+        <div className='after:content-[","]'>{match.name}</div>
+        <div className='after:content-[","]'>{match.region}</div>
+        <div>{match.type}</div>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 export const MatchesHeader = ({ searchTerm }: { searchTerm: string }) => (
   <div className='rounded-t-md bg-gray-200 p-4 text-lg font-bold'>
@@ -41,7 +49,10 @@ export const Matches = ({
     return <div>No matches found</div>
   }
   return matches.map((match, index) => (
-    <MatchRow key={match.symbol} match={match} />
+    <div className='cursor-pointer hover:bg-gray-100' key={match.symbol}>
+      <MatchRow key={match.symbol} match={match} />
+      {index < matches.length - 1 && <Separator />}
+    </div>
   ))
 }
 

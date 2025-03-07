@@ -29,7 +29,7 @@ export const SymbolMatches = () => {
 
   return (
     <div className='flex w-full max-w-xl flex-col space-y-2'>
-      <div className='flex flex-col rounded-md border border-gray-200 pb-2 shadow-md'>
+      <div className='flex flex-col rounded-md border border-gray-200 shadow-md'>
         <MatchesHeader searchTerm={searchTerm || ''} />
         <div className='relative'>
           {isLoading ? (
