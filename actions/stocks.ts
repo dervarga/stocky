@@ -1,8 +1,8 @@
 'use server'
 
+import { transformStockMatches } from '@/lib/parsers'
 import { AlphavantageStockResponse } from '@/types/alphaVantage'
 import { StockMatch } from '@/types/stocks'
-import { transformStockMatches } from '@/utils/parsers'
 
 export const getSymbolsByKeyword = async (
   keyword: string
