@@ -1,6 +1,8 @@
 import { StockMatch } from '@/types/stocks'
 
-export const getSymbolsByKeyword = async (keyword: string): Promise<StockMatch[]> => {
+export const getSymbolsByKeyword = async (
+  keyword: string
+): Promise<StockMatch[]> => {
   try {
     const response = await fetch(`/api/symbols?searchTerm=${keyword}`)
 

@@ -1,5 +1,3 @@
-
-
 export const mockedSymbols = [
   {
     '1. symbol': 'TSLA',
@@ -10,7 +8,7 @@ export const mockedSymbols = [
     '6. marketClose': '16:00',
     '7. timezone': 'UTC-04',
     '8. currency': 'USD',
-    '9. matchScore': '1.0000'
+    '9. matchScore': '1.0000',
   },
   {
     '1. symbol': 'TSLAX',
@@ -21,7 +19,7 @@ export const mockedSymbols = [
     '6. marketClose': '16:00',
     '7. timezone': 'UTC-04',
     '8. currency': 'USD',
-    '9. matchScore': '0.8889'
+    '9. matchScore': '0.8889',
   },
   {
     '1. symbol': 'TSLA.LON',
@@ -32,7 +30,7 @@ export const mockedSymbols = [
     '6. marketClose': '16:30',
     '7. timezone': 'UTC+01',
     '8. currency': 'GBX',
-    '9. matchScore': '0.8000'
+    '9. matchScore': '0.8000',
   },
   {
     '1. symbol': 'TSLA.TRT',
@@ -43,7 +41,7 @@ export const mockedSymbols = [
     '6. marketClose': '16:00',
     '7. timezone': 'UTC-05',
     '8. currency': 'CAD',
-    '9. matchScore': '0.7273'
+    '9. matchScore': '0.7273',
   },
   {
     '1. symbol': 'TSLA34.SAO',
@@ -54,8 +52,8 @@ export const mockedSymbols = [
     '6. marketClose': '17:30',
     '7. timezone': 'UTC-03',
     '8. currency': 'BRL',
-    '9. matchScore': '0.6154'
-  }
+    '9. matchScore': '0.6154',
+  },
 ]
 
 export const mockedGlobalQoute = {
@@ -68,5 +66,5 @@ export const mockedGlobalQoute = {
   '07. latest trading day': '2025-03-06',
   '08. previous close': '279.1000',
   '09. change': '-15.6500',
-  '10. change percent': '-5.6073%'
+  '10. change percent': '-5.6073%',
 }
