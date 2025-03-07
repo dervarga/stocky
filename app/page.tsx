@@ -1,5 +1,5 @@
 import { StockSearch } from '@/components/StockSearch'
-import { SymbolMatches } from '@/components/SymbolMatches'
+import { SymbolMatches } from '@/components/matches/SymbolMatches'
 import { Suspense } from 'react'
 
 export default async function Home() {
