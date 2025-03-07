@@ -1,7 +1,9 @@
 import { AlphavantageStockResponse } from '@/types/alphaVantage'
 import { StockMatch } from '@/types/stocks'
 
-export const transformStockMatches = (stockMatches: AlphavantageStockResponse): StockMatch[] => {
+export const transformStockMatches = (
+  stockMatches: AlphavantageStockResponse
+): StockMatch[] => {
   return stockMatches.bestMatches.map((stockMatch) => {
     return {
       symbol: stockMatch['1. symbol'],

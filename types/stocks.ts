@@ -1,4 +1,3 @@
-
 export type StockMatch = {
   symbol: string
   name: string
@@ -10,4 +9,3 @@ export type StockMatch = {
   currency: string
   matchScore: string
 }
-
