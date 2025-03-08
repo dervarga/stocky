@@ -1,7 +1,7 @@
 export const TestWarningAlert = () => {
   return (
     <div
-      className='mx-auto w-full max-w-xl bg-orange-100 p-4 text-sm text-yellow-700'
+      className='mx-auto w-full bg-orange-100 p-4 text-sm text-yellow-700'
       role='alert'
     >
       <p className='text-center'>
