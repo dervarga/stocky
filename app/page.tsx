@@ -4,7 +4,7 @@ import { Suspense } from 'react'
 
 export default async function Home() {
   return (
-    <div className='flex flex-grow flex-col items-center space-y-2 py-2'>
+    <div className='sm: m-0 m-4 flex flex-grow flex-col items-center space-y-2 py-4'>
       <Suspense fallback='Loading...'>
         <StockSearch />
         <SymbolMatches />
