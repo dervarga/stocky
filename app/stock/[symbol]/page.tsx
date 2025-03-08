@@ -28,7 +28,7 @@ const Page = async ({ params }: PageProps) => {
   } = globalQuote
 
   return (
-    <div className='p-4'>
+    <div className='mx-auto w-full max-w-7xl p-4'>
       <div className='flex items-center space-x-2'>
         <h1 className='text-3xl font-bold'>{stock.symbol}</h1>
         <div>
