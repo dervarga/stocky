@@ -95,9 +95,9 @@ export const getDailyTimeSeries = async (symbol: string) => {
     const rawTimeSeries =
       timeSeriesKey && timeSeriesKey.startsWith('Time Series')
         ? ((rawTimeSeriesResponse as any)[timeSeriesKey] as Record<
-          string,
-          TimeSeriesData
-        >)
+            string,
+            TimeSeriesData
+          >)
         : mockedTimeSeriesResponse
 
     const parsedData: StockIntradayTimeSerieEntry[] = Object.entries(

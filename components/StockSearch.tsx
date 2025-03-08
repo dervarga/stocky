@@ -21,7 +21,7 @@ export const StockSearch = () => {
 
   return (
     <form
-      className='mt-12 flex w-full max-w-xl space-x-2'
+      className='mt-12 flex w-full max-w-xl flex-col space-y-0 space-y-2 space-x-0 sm:flex-row'
       onSubmit={handleSubmit}
     >
       <Input

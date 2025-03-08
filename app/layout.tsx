@@ -1,3 +1,4 @@
+import { TestWarningAlert } from '@/components/ui/TestWarning'
 import { Providers } from '@/lib/providers'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -35,6 +36,7 @@ export default function RootLayout({
                 <h1 className='text-2xl font-bold'>Stocky</h1>
                 <p className='text-sm'>{metadata.description}</p>
               </header>
+              <TestWarningAlert />
               {children}
             </main>
           </div>
