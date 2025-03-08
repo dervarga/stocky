@@ -1,5 +1,4 @@
 import { geStockWithGlobalQuote } from '@/actions/stocks'
-import { StockChart } from '@/components/StockChart'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { parseBigNumber } from '@/lib/parsers'
 import { cn } from '@/lib/utils'
@@ -97,7 +96,6 @@ const Page = async ({ params }: PageProps) => {
           </CardContent>
         </Card>
       </div>
-      <StockChart symbol={symbol} />
     </div>
   )
 }
