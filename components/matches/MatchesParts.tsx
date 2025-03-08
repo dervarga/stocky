@@ -40,7 +40,7 @@ export const Matches = ({
 }) => {
   if (!searchTerm) {
     return (
-      <div className='p-4'>
+      <div className='p-4 italic'>
         It looks like you haven't searched for anything yet.
       </div>
     )
