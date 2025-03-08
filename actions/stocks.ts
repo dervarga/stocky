@@ -23,7 +23,7 @@ export const getSymbolsByKeyword = async (
 ): Promise<StockMatch[]> => {
   try {
     const response = await fetch(
-      `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+      `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${keyword}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
 
     const matches = (await response.json()) as AlphavantageStockResponse
@@ -61,7 +61,7 @@ export const geStockWithGlobalQuote = async (
 export const getGlobalQuote = async (symbol: string) => {
   try {
     const response = await fetch(
-      `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+      `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
 
     const rawGlobalQuoteResponse =
@@ -82,7 +82,7 @@ export const getGlobalQuote = async (symbol: string) => {
 export const getDailyTimeSeries = async (symbol: string) => {
   try {
     const response = await fetch(
-      `${process.env.ALPHA_VANTAGE_BASE_URL}/query?function=TIME_SERIES_DAILY&interval=15min&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
+      `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&interval=15min&symbol=${symbol}&apikey=${process.env.ALPHA_VANTAGE_API_KEY}`
     )
 
     const rawTimeSeriesResponse =
@@ -95,9 +95,9 @@ export const getDailyTimeSeries = async (symbol: string) => {
     const rawTimeSeries =
       timeSeriesKey && timeSeriesKey.startsWith('Time Series')
         ? ((rawTimeSeriesResponse as any)[timeSeriesKey] as Record<
-            string,
-            TimeSeriesData
-          >)
+          string,
+          TimeSeriesData
+        >)
         : mockedTimeSeriesResponse
 
     const parsedData: StockIntradayTimeSerieEntry[] = Object.entries(
